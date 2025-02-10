@@ -1,0 +1,59 @@
+﻿@using CadastroCliente.Web.ViewModels
+
+@model IEnumerable<IndexClientViewModel>
+
+<style>
+    a {
+        color: #000;
+    }
+</style>
+
+<div id="content">
+    <h2>Clientes</h2>
+    @if(Model.Any()) {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Adressess)</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        @if (!string.IsNullOrEmpty(item.Logo))
+                        {
+                            <td><img src="data:image/png;base64,@item.Logo" alt="Logo do Cliente" width="200" /></td>
+                            
+                        }
+
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>
+                             <a asp-controller="Client" asp-action="Addresses" asp-route-id="@item.Id">
+                                Ver endereços
+                            </a> 
+                        </td>
+                        <td>
+                            <a asp-controller="Client" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a> 
+                            <a asp-controller="Client" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else {
+        <p>Não há cliente cadastrado.</p>
+    }
+    <a id="add-product" class="btn btn-primary" asp-controller="Client" asp-action="Create"> Cadastrar </a>
+
+
+</div>

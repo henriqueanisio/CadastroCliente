@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var token = (string)Model;
+}
+
+<div class="text-center">
+    @if (string.IsNullOrEmpty(token))
+    {
+        <form method="POST" asp-controller="auth" asp-action="auth">
+            <input id="submit-product" type="submit" value="Autenticar" class="btn btn-primary" />
+        </form>
+    }
+    else
+    {
+        <p>Bem vindo</p>
+    }
+</div>

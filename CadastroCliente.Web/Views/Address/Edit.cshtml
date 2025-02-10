@@ -1,0 +1,59 @@
+﻿@model EditAddressViewModel
+
+<h3>Editar Address</h3>
+
+<div class="row">
+    <form id="form-product" method="POST" asp-action="Edit" enctype="multipart/form-data">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="ClientId" value="@Model.ClientId" />
+        <div class="form-group">
+            <label asp-for="Street" class="control-label"></label>
+            <input asp-for="Street" class="form-control" />
+            <span asp-validation-for="Street" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="State" class="control-label"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Neighborhood" class="control-label"></label>
+            <input asp-for="Neighborhood" class="form-control" />
+            <span asp-validation-for="Neighborhood" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Number" class="control-label"></label>
+            <input asp-for="Number" class="form-control" />
+            <span asp-validation-for="Number" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Complement" class="control-label"></label>
+            <input asp-for="Complement" class="form-control" />
+            <span asp-validation-for="Complement" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input id="submit-product" type="submit" value="Salvar" class="btn btn-primary" />
+            <a class="btn btn-info" asp-controller="client" asp-action="addresses" asp-route-id="@Model.ClientId">Voltar</a>
+        </div>
+    </form>
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="row">
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    </div>
+}
+
+
